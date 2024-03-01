@@ -1,0 +1,19 @@
+
+syntax = "proto3";
+
+package jwt;
+
+service JWTService {
+    rpc GenerateToken(TokenRequest) returns (TokenResponse) {}
+    rpc ValidateToken(TokenRequest) returns (TokenResponse) {}
+}
+
+message TokenRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message TokenResponse {
+    string access_token = 1;
+    string refresh_token = 2;
+}
