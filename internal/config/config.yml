@@ -1,0 +1,37 @@
+---
+service:
+  jwt:
+    secret: 
+      "YUt79b8&V9x8y23xy9b67rx1iuh86fasdg6"
+    db:
+      mongodb:
+        dbname: jwt
+        host: localhost
+        port: "27017"
+        uri: "mongodb://root:example@localhost:27017"
+        username: root
+        password: example
+        collection: "tokens"
+        collections: #на случай нескольких коллекций
+          - tokens
+          - users
+    network:
+      grpc:
+        host: localhost
+        port: 50051
+        
+        keepalive:
+          KeepaliveParams:
+            ServerParameters:
+              MaxConnectionIdle: 100
+              MaxConnectionAge: 7200
+              MaxConnectionAgeGrace: 60
+              Time: 10
+              Timeout: 3
+          KeepalivePolicy:
+            EnforcementPolicy:
+              MinTime: 10
+              PermitWithoutStream: true
+      http:
+        host: localhost
+        port: 3333

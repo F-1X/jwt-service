@@ -1,14 +1,15 @@
 package model
 
-type AccessToken struct {
-	TokenString string `json:"token_string"`
-	UserID      string `json:"user_id"`
-	Username    string `json:"username"`
-	Expiration  int64  `json:"expiration"`
+type TokenRequest struct {
+	UUID string `json:"uuid_id" bson:"user_id,omitempty"`
 }
 
-type RefreshToken struct {
-	TokenString string `json:"token_string"`
-	UserID      string `json:"user_id"`
-	Expiration  int64  `json:"expiration"`
+type TokenRequestRefresh struct {
+	UUID         string `json:"uuid_id" bson:"user_id,omitempty"`
+	RefreshToken string `json:"refresh_token" bson:"refresh_token,omitempty"`
+}
+
+type TokenResponse struct {
+	AccessToken  string `json:"access_token" bson:"access_token,omitempty"`
+	RefreshToken string `json:"refresh_token" bson:"refresh_token,omitempty"`
 }

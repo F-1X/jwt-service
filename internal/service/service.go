@@ -2,10 +2,10 @@ package service
 
 import (
 	"context"
-	"jwt-service/internal/model"
+	"jwt-service/pkg/jwtGRPC"
 )
 
 type JWTService interface {
-	GenerateToken(ctx context.Context, access *model.AccessToken)
-	RefreshToken(ctx context.Context, refresh *model.RefreshToken)
+	GenerateToken(ctx context.Context, UUID *jwtGRPC.TokenRequest) (*jwtGRPC.TokenResponse, error)
+	RefreshToken(ctx context.Context, token *jwtGRPC.TokenRequestRefresh) (*jwtGRPC.TokenResponse, error)
 }

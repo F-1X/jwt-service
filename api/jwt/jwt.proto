@@ -1,16 +1,23 @@
 
 syntax = "proto3";
 
-package jwt;
+package jwtGRPC;
+
+option go_package = "pkg/jwtGRPC";
 
 service JWTService {
     rpc GenerateToken(TokenRequest) returns (TokenResponse) {}
-    rpc ValidateToken(TokenRequest) returns (TokenResponse) {}
+    rpc RefreshToken(TokenRequestRefresh) returns (TokenResponse) {}
 }
 
+
 message TokenRequest {
-    string username = 1;
-    string password = 2;
+    string uuid = 1;
+}
+
+message TokenRequestRefresh {
+    string uuid = 1;
+    string refresh_token = 2;
 }
 
 message TokenResponse {

@@ -1,13 +1,21 @@
 package jwt
 
-var _ def.UserService = (*service)(nil)
+import (
+	"jwt-service/internal/repository"
+	"jwt-service/pkg/jwtGRPC"
+)
 
-type service struct {
-	userRepository repository.UserRepository
+type JWTService struct {
+	repo   repository.JWTRepository
+	secret string
+	jwtGRPC.UnimplementedJWTServiceServer
 }
 
-func NewService(userRepository repository.UserRepository) *service {
-	return &service{
-		userRepository: userRepository,
+func New(JWTRepository repository.JWTRepository, secret string) *JWTService {
+	
+	return &JWTService{
+
+		repo:   JWTRepository,
+		secret: secret,
 	}
 }
